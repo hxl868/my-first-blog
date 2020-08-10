@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for c in cv %}
+        <div class="c">
+            <h2><a >{{ c.first_name }}</a></h2>
+            <p>{{ c.last_name|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

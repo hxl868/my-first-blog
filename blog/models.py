@@ -16,3 +16,23 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class CV(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    address = models.TextField(max_length=100)
+    nationality = models.TextField(max_length=20)
+    phonenumber = models.TextField(max_length=10)
+    email_address = models.TextField(max_length=100)
+    personal_statement = models.TextField()
+    employment_history = models.TextField()
+    academic_achievements = models.TextField()
+    interests = models.TextField()
+    other = models.TextField()
+    references = models.TextField()
+
+    def publish(self):
+        self.save()
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name + ' CV'

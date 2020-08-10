@@ -13,7 +13,8 @@ class NewVisitorTest(unittest.TestCase):
         # Edith has heard about a cool new online to-do app. She goes
         # to check out its homepage
         self.browser.get('http://localhost:8000')
-
+        elements = self.browser.find_elements()
+        print('elements')
         # She notices the page title and header mention to-do lists
         self.assertIn('blog', self.browser.title)  
         self.fail('Finish the test!')  
