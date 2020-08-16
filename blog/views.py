@@ -3,6 +3,7 @@ from django.utils import timezone
 from .models import Post
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
+from .forms import CVForm
 from django.shortcuts import redirect
 from .models import CV
 
@@ -44,3 +45,15 @@ def post_edit(request, pk):
 def cv(request):
     cv = CV.objects.all()
     return render(request, 'blog/cv.html', {'cv' : cv})
+
+def cv_edit(request):
+    cv = get_object_or_404(CV, pk=1)
+    if request.method == "POST":
+        form = CVForm(request.POST, instance=cv)
+        if form.is_valid():
+            cv = form.save(commit=False)
+            cv.save()
+        return redirect('cv')
+    else:
+        form = CVForm(instance=cv)
+    return render(request, 'blog/cv_edit.html', {'form': form})
