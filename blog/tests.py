@@ -15,3 +15,8 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'blog/post_list.html')
         self.assertTemplateUsed(response, 'blog/base.html')
+
+    def test_cv_returns_correct_html(self):
+    	response = self.client.get('/cv/')
+    	self.assertTemplateUsed(response, 'blog/base.html')
+    	self.assertTemplateUsed(response, 'blog/cv.html')

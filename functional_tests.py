@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import unittest
 
 class NewVisitorTest(unittest.TestCase):  
@@ -10,16 +11,28 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.quit()
 
     def test_can_start_a_list_and_retrieve_it_later(self):  
-        # Edith has heard about a cool new online to-do app. She goes
-        # to check out its homepage
+        
         self.browser.get('http://localhost:8000')
         elements = self.browser.find_elements()
         print('elements')
-        # She notices the page title and header mention to-do lists
-        self.assertIn('blog', self.browser.title)  
-        self.fail('Finish the test!')  
+        print(elements)
 
-        # She is invited to enter a to-do item straight away [...rest of comments as before]
+        
+        self.assertIn('blog', self.browser.title)  
+        #click on cv link
+        link = self.browser.find_element_by_link_text('CV')
+        link.click()
+        #user taken to cv page
+
+        elements = self.browser.find_elements(By.TAG_NAME, 'p')
+
+        for e in elements:
+            print(e.text)
+        #return home
+        link = self.browser.find_element_by_link_text('Django Girls Blog')
+        link.click()
+        
+ 
 
 if __name__ == '__main__':  
     unittest.main(warnings='ignore')  
