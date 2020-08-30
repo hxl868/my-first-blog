@@ -1,14 +1,14 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <h1>Harrys cv</h1>
+    <h2>Harrys cv</h2>
     {% for c in cv %}
         <div class="c">
             {% if user.is_authenticated %}
         	    <a class="btn btn-default pull-right" href="{% url 'cv_edit' %}""><span class="glyphicon glyphicon-pencil"></span></a>
             {% endif %}
             
-            <p ><b>Name:</b>{{ c.first_name }} {{ c.last_name }}</p>
+            <p ><b>Name: </b>{{ c.first_name }} {{ c.last_name }}</p>
             <p><b>Address: </b>{{ c.address|linebreaksbr }}</p>
             <p><b>Nationality: </b>{{ c.nationality|linebreaksbr }}</p>
             <p><b>Phonenumber: </b>{{ c.phonenumber|linebreaksbr }}</p>

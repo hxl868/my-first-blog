@@ -10,25 +10,30 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):  
         self.browser.quit()
 
-    def test_can_start_a_list_and_retrieve_it_later(self):  
+    def test_can_view_cv_page(self):  
         
         self.browser.get('http://localhost:8000')
         elements = self.browser.find_elements()
-        print('elements')
-        print(elements)
 
-        
         self.assertIn('blog', self.browser.title)  
         #click on cv link
         link = self.browser.find_element_by_link_text('CV')
         link.click()
         #user taken to cv page
+        header_text = self.browser.find_element_by_tag_name('h2').text 
+        self.assertIn('cv', header_text)
+        elements = self.browser.find_elements(By.TAG_NAME, 'b')
 
-        elements = self.browser.find_elements(By.TAG_NAME, 'p')
-
+        #all elements of the cv should be shown on the page.
+        #elements = self.browser.find_elements(By.TAG_NAME, 'p'
+        onpage = []
+        expected = ['Name:','Address:','Nationality:','Phonenumber:','Email:','Statement:','Employment history:','Academic achievements:','Interests:','Other:','References:']
         for e in elements:
-            print(e.text)
+            #print(e.text)
+            onpage.append(e.text)
         #return home
+        self.assertListEqual(onpage, expected)
+
         link = self.browser.find_element_by_link_text('Django Girls Blog')
         link.click()
         
