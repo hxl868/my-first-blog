@@ -1,22 +1,24 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+    <h1>Harrys cv</h1>
     {% for c in cv %}
         <div class="c">
             {% if user.is_authenticated %}
         	    <a class="btn btn-default pull-right" href="{% url 'cv_edit' %}""><span class="glyphicon glyphicon-pencil"></span></a>
             {% endif %}
-            <p >{{ c.first_name }}</p>
-            <p>{{ c.address|linebreaksbr }}</p>
-            <p>{{ c.nationality|linebreaksbr }}</p>
-            <p>{{ c.phonenumber|linebreaksbr }}</p>
-            <p>{{ c.email_address|linebreaksbr }}</p>
-            <p>{{ c.personal_statement|linebreaksbr }}</p>
-            <p>{{ c.employment_history|linebreaksbr }}</p>
-            <p>{{ c.academic_achievements|linebreaksbr }}</p>
-            <p>{{ c.interests|linebreaksbr }}</p>
-            <p>{{ c.other|linebreaksbr }}</p>
-            <p>{{ c.references|linebreaksbr }}</p>
+            
+            <p ><b>Name:</b>{{ c.first_name }} {{ c.last_name }}</p>
+            <p><b>Address: </b>{{ c.address|linebreaksbr }}</p>
+            <p><b>Nationality: </b>{{ c.nationality|linebreaksbr }}</p>
+            <p><b>Phonenumber: </b>{{ c.phonenumber|linebreaksbr }}</p>
+            <p><b>Email: </b>{{ c.email_address|linebreaksbr }}</p>
+            <p><b>Statement: </b>{{ c.personal_statement|linebreaksbr }}</p>
+            <p><b>Employment history: </b>{{ c.employment_history|linebreaksbr }}</p>
+            <p><b>Academic achievements: </b>{{ c.academic_achievements|linebreaksbr }}</p>
+            <p><b>Interests: </b>{{ c.interests|linebreaksbr }}</p>
+            <p><b>Other: </b>{{ c.other|linebreaksbr }}</p>
+            <p><b>References: </b>{{ c.references|linebreaksbr }}</p>
         </div>
     {% endfor %}
 {% endblock %}
